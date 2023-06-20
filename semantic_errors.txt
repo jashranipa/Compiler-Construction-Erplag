@@ -1,0 +1,24 @@
+Type mismatch error in expression at line number: 27
+Array variable: m[25] index out of bound at line number: 38
+Type mismatch error in expression at line number: 39
+Type incompatible of v3 in Module Reuse Statement at line number: 41
+Type mismatch error in expression at line number: 43
+Type incompatible of b7 in Module Reuse Statement at line number: 46
+Type incompatible of p in Module Reuse Statement at line number: 46
+Array bound incompatible of B in Module Reuse Statement at line number: 80
+For loop iterator variable: k cannot be assigned a value at line number: 88
+Type mismatch error in expression at line number: 83
+Type incompatible of Var4 in Module Reuse Statement at line number: 88
+Type mismatch error at line number: 89
+Invoked module: function3 does not exist at line number: 92
+Array variable: A[11] index out of bound at line number: 95
+Output parameters: [ n ] is not assigned any value inside function var_demo_array at line number: 48
+Output parameters: [ n ] is not assigned any value inside function f1 at line number: 97
+Module: function4 definition and its declaration both appear before its call at line number: 121
+Type mismatch error at line number: 128
+Type mismatch error in expression at line number: 133
+Type mismatch error in expression at line number: 134
+Array variable: C[1] index out of bound at line number: 138
+Type mismatch error at line number: 140
+Array bound incompatible in Assignment Statement at line number: 143
+Output parameters: [ R3 ] is not assigned any value inside function function1 at line number: 160

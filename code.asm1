@@ -1,0 +1,80 @@
+extern printf, scanf, exit
+section .data
+int: db "%d", 0
+real: db "%lf", 0
+bool: db "%d", 0
+str: db "%s",10, 0
+str_no_new_line: db "%s", 0
+section .text
+;Push all registers
+%macro push_all 0
+push RAX
+push RBX
+push RCX
+push RDX
+push RSP
+push RBP
+push RSI
+push RDI
+%endmacro
+
+;Pop all registers
+%macro pop_all 0
+pop RDI
+pop RSI
+pop RBP
+pop RSP
+pop RDX
+pop RCX
+pop RBX
+pop RAX
+%endmacro
+
+%macro print_str 1
+section .data
+%%str db %1,0
+section .text
+push_all
+mov RDI, str
+mov RSI, %%str
+mov RAX,0
+align_16_rsp
+call printf
+remove_align_16_rsp
+pop_all
+%endmacro
+
+%macro print_str_no_new_line 1
+section .data
+%%str_no_new_line db %1,0
+section .text
+push_all
+mov RDI, str_no_new_line
+mov RSI, %%str
+mov RAX,0
+align_16_rsp
+call printf
+remove_align_16_rsp
+pop_all
+%endmacro
+
+%macro align_16_rsp 0 
+push RBX
+push RDX
+push RAX
+mov RDX, 0
+mov RAX, RSP
+mov RBX, 16
+idiv RBX
+mov RBX, RDX
+pop RAX
+pop RDX
+sub RSP, RBX
+%endmacro
+%macro remove_align_16_rsp 0
+add RSP, RBX
+pop RBX
+%endmacro
+global main
+main:enter 32, 0
+call exit

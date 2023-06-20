@@ -1,0 +1,140 @@
+<program'> <program> $
+<program> <moduleDeclarations> <otherModules> <driverModule> <otherModules>
+<moduleDeclarations> <moduleDeclaration> <moduleDeclarations>
+<moduleDeclarations> epsilon
+<moduleDeclaration> DECLARE MODULE ID SEMICOL
+<otherModules> <module> <otherModules>
+<otherModules> epsilon
+<driverModule> DRIVERDEF DRIVER PROGRAM DRIVERENDDEF <moduleDef>
+<module> DEF MODULE ID ENDDEF TAKES INPUT SQBO <input_plist> SQBC SEMICOL <ret> <moduleDef>
+<ret> RETURNS SQBO <output_plist> SQBC SEMICOL
+<ret> epsilon
+<input_plist> ID COLON <dataType> <input_plist_temp>
+<input_plist_temp> COMMA ID COLON <dataType> <input_plist_temp>
+<input_plist_temp> epsilon
+<output_plist> ID COLON <type> <output_plist_temp>
+<output_plist_temp> COMMA ID COLON <type> <output_plist_temp>
+<output_plist_temp> epsilon
+<dataType> INTEGER
+<dataType> REAL
+<dataType> BOOLEAN
+<dataType> ARRAY SQBO <range_dtype> SQBC OF <type>
+<type> INTEGER
+<type> REAL
+<type> BOOLEAN
+<moduleDef> START <statements> END
+<range_dtype> <range_bound> RANGEOP <range_bound>
+<range_bound> MINUS <which_range_bound>
+<range_bound> <which_range_bound>
+<which_range_bound> ID
+<which_range_bound> NUM
+<statements> <statement> <statements>
+<statements> epsilon
+<statement> <ioStmt>
+<statement> <simpleStmt>
+<statement> <declareStmt>
+<statement> <condionalStmt>
+<statement> <iterativeStmt>
+<ioStmt> GET_VALUE BO ID BC SEMICOL
+<ioStmt> PRINT BO <ioStmt_output> BC SEMICOL
+<ioStmt_output> ID <whichID>
+<whichID> SQBO <arr_ioStmt_output> SQBC
+<whichID> epsilon
+<arr_ioStmt_output> ID
+<arr_ioStmt_output> NUM
+<arr_ioStmt_output> MINUS NUM
+<ioStmt_output> TRUE
+<ioStmt_output> FALSE
+<ioStmt_output> MINUS <which_ioStmt_output>
+<ioStmt_output> <which_ioStmt_output>
+<which_ioStmt_output> NUM
+<which_ioStmt_output> RNUM
+<simpleStmt> <assignmentStmt>
+<simpleStmt> <moduleReuseStmt>
+<assignmentStmt> ID <whichStmt>
+<whichStmt> <lvalueIDStmt>
+<whichStmt> <lvalueARRStmt>
+<lvalueIDStmt> ASSIGNOP <toptier_expression> SEMICOL
+<lvalueARRStmt> SQBO <index_expression> SQBC ASSIGNOP <toptier_expression> SEMICOL
+<index_expression> <index_expression_term> <index_expression_temp>
+<index_expression_temp> <op1> <index_expression_term> <index_expression_temp>
+<index_expression_temp> epsilon
+<index_expression_term> <index_expression_factor> <index_expression_term_temp>
+<index_expression_term_temp> <op2> <index_expression_factor> <index_expression_term_temp>
+<index_expression_term_temp> epsilon
+<index_expression_factor> <op1> <index_factor>
+<index_expression_factor> <index_factor>
+<index_factor> BO <index_expression> BC
+<index_factor> ID
+<index_factor> NUM
+<moduleReuseStmt> <optional> USE MODULE ID WITH PARAMETERS <idList> SEMICOL
+<optional> SQBO <idList> SQBC ASSIGNOP
+<optional> epsilon
+<idList> ID <idList_temp>
+<idList_temp> COMMA ID <idList_temp>
+<idList_temp> epsilon
+<toptier_expression> <toptier_expression_term> <toptier_expression_temp>
+<toptier_expression_temp> <logicalOp> <toptier_expression_term> <toptier_expression_temp>
+<toptier_expression_temp> epsilon
+<toptier_expression_term> <toptier_expression_factor> <toptier_expression_term_temp>
+<toptier_expression_term> TRUE <toptier_expression_term_temp>
+<toptier_expression_term> FALSE <toptier_expression_term_temp>
+<toptier_expression_term_temp> <relationalOp> <toptier_expression_factor> <toptier_expression_term_temp>
+<toptier_expression_term_temp> epsilon
+<toptier_expression_factor> <term> <toptier_expression_factor_temp>
+<toptier_expression_factor_temp> <op1> <term> <toptier_expression_factor_temp>
+<toptier_expression_factor_temp> epsilon
+<term> <factor> <term_temp>
+<term_temp> <op2> <factor> <term_temp>
+<term_temp> epsilon
+<factor> <op1> <factor'>
+<factor> <factor'>
+<factor'> BO <toptier_expression> BC
+<factor'> NUM
+<factor'> RNUM
+<factor'> ID <which_factor>
+<which_factor> SQBO <index_expression> SQBC
+<which_factor> epsilon
+<op1> PLUS
+<op1> MINUS
+<op2> MUL
+<op2> DIV
+<logicalOp> AND
+<logicalOp> OR
+<relationalOp> LT
+<relationalOp> LE
+<relationalOp> GT
+<relationalOp> GE
+<relationalOp> EQ
+<relationalOp> NE
+<declareStmt> DECLARE <idList> COLON <dataType> SEMICOL
+<condionalStmt> SWITCH BO ID BC START <caseStmt> <default> END
+<caseStmt> CASE <value> COLON <statements> BREAK SEMICOL <caseStmt_many>
+<caseStmt_many> CASE <value> COLON <statements> BREAK SEMICOL <caseStmt_many>
+<caseStmt_many> epsilon
+<value> NUM
+<value> MINUS NUM
+<value> TRUE
+<value> FALSE
+<default> DEFAULT COLON <statements> BREAK SEMICOL
+<iterativeStmt> FOR BO ID IN <range_for_loop> BC START <statements> END
+<iterativeStmt> WHILE BO <toptier_expression> BC START <statements> END
+<range_for_loop> <which_range_for_loop> RANGEOP <which_range_for_loop>
+<which_range_for_loop> MINUS NUM
+<which_range_for_loop> PLUS NUM
+<which_range_for_loop> NUM
+<default> epsilon
+<range_bound> PLUS <which_range_bound>
+<module_plist> <module_plist_val> <module_plist_temp>
+<module_plist_temp> COMMA <module_plist_val> <module_plist_temp>
+<module_plist_temp> epsilon
+<module_plist_val> <val_val>
+<module_plist_val> PLUS <val_val>
+<module_plist_val> MINUS <val_val>
+<module_plist_val> TRUE
+<module_plist_val> FALSE
+<val_val> NUM
+<val_val> RNUM
+<val_val> ID <whichID>
+<arr_ioStmt_output_thing> PLUS <arr_ioStmt_output_thing>
+<arr_ioStmt_output_thing> MINUS <arr_ioStmt_output_thing>
